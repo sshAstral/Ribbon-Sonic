@@ -15,10 +15,9 @@ GameObject stage_objects[GENESIS_TOTAL_LIMIT];
 int total_objects = 0;
 
 HBITMAP h_ground = NULL;
-HBITMAP h_screen = NULL; // NUEVO: Puntero para el fondo del espacio/pantalla
+HBITMAP h_screen = NULL;
 
 void init_stage0() {
-    // Carga de texturas desde la carpeta MAP
     h_ground = (HBITMAP)LoadImage(NULL, "ASSETS\\RSSprites\\MAP\\PS-GROUND.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
     h_screen = (HBITMAP)LoadImage(NULL, "ASSETS\\RSSprites\\MAP\\PS-SCREEN.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
     
@@ -31,7 +30,6 @@ void init_stage0() {
 void render_stage0(HDC hdc_backbuffer, float player_x, float player_y) {
     HDC hdc_mem = CreateCompatibleDC(hdc_backbuffer);
 
-    // --- 1. DIBUJAR EL BACKGROUND (PS-SCREEN.BMP) ---
     if (h_screen) {
         SelectObject(hdc_mem, h_screen);
         // Dibujamos el fondo estático en toda la pantalla (o puedes meterle scroll dividiendo camera_x)
@@ -39,7 +37,6 @@ void render_stage0(HDC hdc_backbuffer, float player_x, float player_y) {
                    hdc_mem,        0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SRCCOPY);
     }
 
-    // --- 2. DIBUJAR EL SUELO (PS-GROUND.BMP) ENCIMA ---
     if (h_ground) {
         int camera_x = (int)player_x - (SCREEN_WIDTH / 2);
         if (camera_x < 0) camera_x = 0;
