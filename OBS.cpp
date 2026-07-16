@@ -3,8 +3,7 @@
 #include <fstream>
 #include <string>
 #include <filesystem>
-#include "Prototype.h" // <-- Incluimos el puente del juego
-
+#include "Prototype.h"
 namespace fs = std::filesystem;
 
 std::string statusText = "INITIALIZING G|72...";
